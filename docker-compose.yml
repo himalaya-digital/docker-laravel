@@ -1,0 +1,22 @@
+version: "2"
+
+services:
+  mariadb:
+    image: bitnami/mariadb:10.2
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_DATABASE=db_alihgae
+
+  myapp:
+    tty: true
+    image: bitnami/laravel:5.8.0
+    environment:
+      - DB_HOST=mariadb
+      - DB_USERNAME=root
+      - DB_DATABASE=db_alihgae
+    depends_on:
+      - mariadb
+    ports:
+      - 8000:3000
+    volumes:
+      - ./:/app

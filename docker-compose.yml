@@ -1,22 +1,47 @@
-version: "2"
+version: "3"
 
 services:
-  mariadb:
-    image: bitnami/mariadb:10.2
+  # Enable this if use mariadb   
+  # mariadb:
+  #   image: bitnami/mariadb:10.2
+  #   environment:
+  #     - ALLOW_EMPTY_PASSWORD=yes
+  #     - MARIADB_DATABASE=db_alihgae
+
+  mysql:
+    image: "bitnami/mysql:5.7"
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
-      - MARIADB_DATABASE=db_alihgae
+      - MYSQL_DATABASE=db_alihgae
+      # - MYSQL_ROOT_PASSWORD=pass
+    ports:
+      - 3306:3306
 
-  myapp:
+  phpmyadmin:
+    image: bitnami/phpmyadmin:5
+    ports:
+      - "80:8080"
+      - "443:8443"
+    depends_on:
+      - mysql
+    environment:
+      # default database host is mariadb, 
+      # if host not same with active database,
+      # will cause error
+      - DATABASE_HOST=mysql
+
+  app:
     tty: true
     image: bitnami/laravel:5.8.0
     environment:
-      - DB_HOST=mariadb
+      - DB_HOST=mysql
       - DB_USERNAME=root
       - DB_DATABASE=db_alihgae
+      # - DB_PASSWORD=pass
     depends_on:
-      - mariadb
+      - mysql
     ports:
       - 8000:3000
     volumes:
       - ./:/app
+

@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  mariadb:
+    image: bitnami/mariadb:10.2
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_DATABASE=db_app
+
+  phpmyadmin:
+    image: bitnami/phpmyadmin:5
+    ports:
+      - "80:8080"
+      - "443:8443"
+    depends_on:
+      - mariadb
+    environment:
+      - DATABASE_HOST=mariadb
+
+  app:
+    tty: true
+    image: bitnami/laravel:5.8.0
+    environment:
+      - DB_HOST=mysql
+      - DB_USERNAME=root
+      - DB_DATABASE=db_app
+    depends_on:
+      - mysql
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/app
+

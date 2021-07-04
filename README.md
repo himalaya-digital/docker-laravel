@@ -14,7 +14,7 @@ This docker setup for development laravel based project. Two way to use this:
 2. Run command `docker-compose up`
 
 ## Open Contribution
-- [x] Write the proper docs
+- [ ] Write the proper docs
 - [ ] Update README.md for each folder
 - [ ] Testing for various project type
 - [ ] Integrate with nodeJS

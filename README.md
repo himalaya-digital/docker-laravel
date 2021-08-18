@@ -4,6 +4,10 @@
 
 This docker setup for development laravel based project. Two way to use this:
 
+## How to use?
+
+First, choose the version, then...
+
 ### A. Without laravel project
 1. Create new folder `mkdir newapp` 
 2. Create docker-compose.yml `touch docker-compose.yml`

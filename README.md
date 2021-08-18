@@ -7,7 +7,7 @@ First, choose the version, then...
 
 ### A. Without laravel project
 1. Create new folder `mkdir newapp` 
-2. Create docker-compose.yml `touch docker-compose.yml`
+2. Copy `docker-compose.yml` to your folder
 3. Run command `docker-compose up`
 
 ### B. With laravel project

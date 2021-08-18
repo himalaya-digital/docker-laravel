@@ -1,11 +1,8 @@
 # docker-laravel
-
-## Still on development
-
-This docker setup for development laravel based project. Two way to use this:
+This docker setup for development laravel based project.
+Still under development.
 
 ## How to use?
-
 First, choose the version, then...
 
 ### A. Without laravel project
